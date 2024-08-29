@@ -1,6 +1,6 @@
 import { BG_IMG } from "./Constants/constants";
 import { InputBox, useCurrencyInfo } from "./Components";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const App = () => {
 	const [amount, setAmount] = useState(0);
@@ -19,8 +19,16 @@ const App = () => {
 	};
 
 	const convert = () => {
-		setConvertedAmount(amount * currencyInfo[to]);
+		if (currencyInfo[to]) {
+			setConvertedAmount(amount * currencyInfo[to]);
+		} else {
+			setConvertedAmount(0);
+		}
 	};
+
+	useEffect(() => {
+		convert();
+	}, [amount, currencyInfo]);
 
 	return (
 		<div

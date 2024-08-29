@@ -29,6 +29,7 @@ const InputBox = ({
 					type="number"
 					placeholder="Amount"
 					value={amount}
+					min={0}
 					onChange={(e) =>
 						onAmountChange && onAmountChange(Number(e.target.value))
 					}
